@@ -46,7 +46,7 @@ export default function Catalog() {
   }, []);
 
 // Filter Products
-  function getFilteredProducts() {
+  function getFiltered() {
     return products.filter(function (item) {
       var categoryMatch = category === "all" || item.category === category;
       var priceMatch = maxPrice === "" || item.price <= Number(maxPrice);
@@ -63,7 +63,7 @@ export default function Catalog() {
 // Remove from Cart
   function removeFromCart(id) {
     setCart(prev => {
-      const copy = { ...prev };
+      const copy = {...prev};
       if (copy[id] > 1) copy[id]--;
       else delete copy[id];
       return copy;
@@ -74,16 +74,16 @@ export default function Catalog() {
   }
 // Clear Cart
 function clearCart(){
-    var newProducts = products.map(function (p) {
+    var RestoredProducts = products.map(function (p) {
         if (cart[p.id]) {
             p.stock=p.stock+cart[p.id];
         }
         return p;
     });
-    setProducts(newProducts);
+    setProducts(RestoredProducts);
     setCart({});
 }
-var filteredProducts = getFilteredProducts();
+var filteredProducts = getFiltered();
 
 // Display
 return(
