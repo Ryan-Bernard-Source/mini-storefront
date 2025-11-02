@@ -1,15 +1,13 @@
 'use client';
-import React from React;
+import React from "react";
 import ProductCard from "./ProductCard";
 
-export default function ProductList(props){
-    return(
-        <div className="product-list">
-        {props.products.map(function (p) {
-        return (
-          <ProductCard key={p.id} product={p} onAdd={props.onAdd} />
-        );
-      })}
-        </div>
-    );
+export default function ProductList({ products, onAdd }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {products.map((p) => (
+        <ProductCard key={p.id} product={p} onAdd={onAdd} />
+      ))}
+    </div>
+  );
 }

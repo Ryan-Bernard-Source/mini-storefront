@@ -1,9 +1,9 @@
-import React from "react";
+import Catalog from "./components/Catalog";
 
-export default function Catalog() {
+export default function Page() {
   return (
-    <div>
-      <h2 className="text-lg font-bold">Welcome to the Store</h2>
-    </div>
+    <main className="p-6">
+      <Catalog />
+    </main>
   );
 }
