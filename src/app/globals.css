@@ -20,7 +20,50 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: white;
+  margin: 20px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main{
+  background: antiquewhite;
+  padding: 20xp;
+  border-radius: 8px;
+}
+
+h1{
+  text-align: center;
+}
+
+.product-list{
+  display: grid;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.product-card{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  background: white;
+}
+
+.card-summary{
+  background: rgb(222, 221, 221);
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+button{
+  padding: 6px 12px;
+  background-color: #7b8999;
+  color: rgb(216, 194, 194);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #5582b6;
 }
