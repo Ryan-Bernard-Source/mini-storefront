@@ -11,40 +11,36 @@ export default function Catalog() {
     const [category, setCategory] = useState('all');
     const [ maxPrice, setMaxPrice] = useState('');
     const [cart, setCart] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setStatus] = useState('loading');
     const [error, setError] = useState('');
 // Fetch Product Data
-    useEffect(() => {
-        fetch('/api/products')
-            .then((res) => res.json())
-            .then(data => {
-                setProducts(data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setError('Failed to load products');
-                setLoading(false);
-        });
-    }, []);
+ useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setStatus("success");
+      })
+      .catch(() => {
+        setStatus("error");
+        setError("Failed to load products");
+      });
+  }, []);
 // Stock Change & Cleanup
- useEffect(function () {
-    var timer = setInterval(function () {
-      setProducts(function (oldList) {
-        var newList = oldList.map(function (item) {
-          if (item.stock > 0 && Math.random() < 0.3) {
-            item.stock = item.stock - 1;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProducts((prevList) =>
+        prevList.map((item) => {
+          if (item.stock > 0) {
+            return { ...item, stock: item.stock - 1 };
           }
           return item;
-        });
-        return newList;
-      });
+        })
+      );
     }, 5000);
 
-    return function () {
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer); // cleanup on unmount
   }, []);
-
 // Filter Products
   function getFiltered() {
     return products.filter(function (item) {
